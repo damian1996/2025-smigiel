@@ -29,13 +29,13 @@ def parse_args() -> argparse.Namespace:
         help="Number of samples to evaluate",
     )
     parser.add_argument(
-        "--model-name-1",
+        "--observer-model",
         type=str,
         default="speakleash/Bielik-11B-v2",
         help="Base model name",
     )
     parser.add_argument(
-        "--model-name-2",
+        "--performer-model",
         type=str,
         default="speakleash/Bielik-11B-v2.3-Instruct",
         help="Instruct model name",
@@ -95,8 +95,8 @@ def main() -> None:
     labels = load_lines(args.labels_path, args.n_samples)
 
     bino = Binoculars(
-        args.model_name_1,
-        args.model_name_2,
+        args.observer_model,
+        args.performer_model,
         use_bfloat16=args.use_bfloat16,
         mode=args.mode,
     )
